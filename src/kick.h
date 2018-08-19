@@ -6,6 +6,8 @@
 class Kick {
 public:
   Kick();
+  void trigger();
+  
   AudioSynthWaveformModulated  sine;
   AudioFilterStateVariable     lpf;
   AudioEffectEnvelope          env;

@@ -6,6 +6,12 @@
 class HH {
 public:
   HH();
+  void trigger(int type);
+
+  void decay(int decay)   { oh_env.release(decay); }
+  void cutoff(int cutoff) { bpf.frequency(cutoff); hpf.frequency(cutoff - 3000);}
+  void rez(int rez)       { bpf.resonance(rez); hpf.resonance(rez); }
+
   AudioSynthWaveform        square[6];
   AudioMixer4               mixer[3];
   AudioFilterStateVariable  bpf;
@@ -14,15 +20,9 @@ public:
   AudioEffectEnvelope       ch_env;
 
 private:
-  int attack = 20;
-  int decay = 10;
-  int sustain = 0.3;
-  int oh_release = 1000;
-  int ch_release = 270;
-  int bpf_freq = 10000;
-  int hpf_freq = 7000;
-  int base_freq = 40;
-  float ratio[6] = {2, 3, 4.16, 5.43, 6.79, 8.21};
+  int _attack, _decay, _sustain, _oh_release, _ch_release;
+  int _base_freq, _bpf_freq, _hpf_freq;
+  float _ratio[6];
 };
 
 
